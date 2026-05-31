@@ -6,7 +6,7 @@ import Developer from "../shared/Developer";
 
 export default function Footer() {
   return (
-    <footer className="">
+    <footer>
       <SectionWrapper className="flex flex-col gap-4 items-center">
         <Badge />
         <Navbar />
