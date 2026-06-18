@@ -6,15 +6,18 @@ import { useEffect, type ReactNode } from "react";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const { isAuthenticated, isInitialized } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   useEffect(() => {
-    if (!isInitialized) return;
+
+    if (loading) return;
     if (!isAuthenticated) {
       router.replace("/auth/login");
     }
-  }, [isAuthenticated, isInitialized, router]);
+  }, [isAuthenticated, loading, router]);
 
-  if (!isInitialized) return <FullScreenLoader />;
-  if (!isAuthenticated) return null;
+  if (loading) return <FullScreenLoader />;
+  if (!isAuthenticated) {
+    return null;
+  }
   return <>{children}</>;
 }

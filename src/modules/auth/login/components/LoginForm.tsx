@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { getErrorMessage } from "@/shared/utils/get-error-message";
 import FormError from "@/shared/components/shared/FormError";
 import { Activity } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase/firebase";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -26,16 +28,25 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const handleLogin: SubmitHandler<LoginInput> = async (data) => {
-    try {
-      await mutateAsync(data);
-      reset();
-      router.replace("/");
-    } catch (err) {
-      console.log("Login error :", getErrorMessage(err));
-    }
-  };
+  const handleLogin = async (data: LoginInput) => {
+    console.log("Starting login");
 
+    const credential = await signInWithEmailAndPassword(auth, data.email, data.password);
+
+    console.log("Firebase login success");
+
+    const idToken = await credential.user.getIdToken();
+
+    console.log("Got idToken");
+
+    const response = await mutateAsync({ idToken });
+
+    console.log("Backend response:", response);
+
+    console.log("Redirecting...");
+
+    router.replace("/dashboard");
+  };
   return (
     <SectionWrapper className="flex flex-col gap-4 items-center">
       <form onSubmit={handleSubmit(handleLogin)} className="w-full max-w-82 mx-auto">

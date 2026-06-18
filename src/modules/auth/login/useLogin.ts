@@ -8,9 +8,11 @@ import { getErrorMessage } from "@/shared/utils/get-error-message";
 import { authBreadcrumbs } from "@/shared/lib/sentry/sentry-breadcrumbs";
 
 export const useLogin = () => {
-  const { setSession } = useAuthContext();
+  const {
+    // setSession
+  } = useAuthContext();
   return useMutation({
-    mutationFn: (data: LoginInput) => login(data),
+    mutationFn: login,
     onMutate: () => {
       authBreadcrumbs("Login attempt started");
     },
@@ -19,7 +21,7 @@ export const useLogin = () => {
         userId: data.user.id,
         email: data.user.email,
       });
-      setSession(data.user, data.accessToken);
+      //   setSession(data.user, data.accessToken);
       toast.success("Login successfull");
     },
     onError: (error) => {

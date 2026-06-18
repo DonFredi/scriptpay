@@ -13,12 +13,13 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!isInitialized) return;
     if (isAuthenticated) {
-      router.replace("/");
+      console.log("authenticated;", isAuthenticated);
     }
   }, [isAuthenticated, isInitialized, router]);
 
   if (!isInitialized) return <FullScreenLoader />;
   if (isAuthenticated) return null;
+
   return (
     <>
       <header className="">

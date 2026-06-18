@@ -17,5 +17,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   if (isAuthenticated && !requireRoles(user.roles, ["admin"])) {
     redirect("/unauthorized");
   }
-  return <>{children}</>;
+  return (
+    <div className="flex">
+      {/* <AdminSidebar /> */}
+      <main className="flex-1">{children}</main>
+    </div>
+  );
 }

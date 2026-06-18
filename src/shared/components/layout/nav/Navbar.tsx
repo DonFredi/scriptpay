@@ -4,9 +4,11 @@ export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/admin/dashboard", label: "Dashboard" },
   { to: "/api-docs", label: "API Docs" },
-  { to: "/onboarding", label: "Onboarding" },
+  //   { to: "/onboarding", label: "Onboarding" },
+  { to: "/payments", label: "Payments" },
+  { to: "/transactions", label: "Transactions" },
   //   { to: "/contact", label: "Contact us" },
-  { to: "/profile", label: "Profile" },
+  //   { to: "/profile", label: "Profile" },
 ];
 
 export default function Navbar() {

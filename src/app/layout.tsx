@@ -6,7 +6,7 @@ import Footer from "@/shared/components/layout/Footer";
 import { generateSEO } from "@/shared/lib/seo";
 import { Toaster } from "sonner";
 import QueryProvider from "@/providers/QueryProvider";
-import AuthProvider from "@/providers/AuthProvider";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",

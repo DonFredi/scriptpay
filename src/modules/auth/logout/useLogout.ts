@@ -8,7 +8,9 @@ import { getErrorMessage } from "@/shared/utils/get-error-message";
 import { authBreadcrumbs } from "@/shared/lib/sentry/sentry-breadcrumbs";
 
 export const useLogout = () => {
-  const { clearSession } = useAuthContext();
+  const {
+    // clearSession
+  } = useAuthContext();
 
   return useMutation({
     mutationFn: logout,
@@ -17,13 +19,13 @@ export const useLogout = () => {
     },
     onSuccess: (_data) => {
       authBreadcrumbs("Logout successful");
-      clearSession();
+      //   clearSession();
       queryClient.clear();
       toast.success("Logout successful");
     },
     onError: (error) => {
       authBreadcrumbs("Logout failed", { error: String(error) });
-      clearSession();
+      //   clearSession();
       queryClient.clear();
       toast.error(getErrorMessage(error));
     },
