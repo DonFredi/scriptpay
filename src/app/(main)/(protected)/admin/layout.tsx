@@ -14,9 +14,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     redirect("/auth/login");
   }
   // Logged in but not admin
-  if (isAuthenticated && !requireRoles(user.roles, ["admin"])) {
-    redirect("/unauthorized");
-  }
+  //   if (isAuthenticated && !requireRoles(user.roles, ["admin"])) {
+  //     redirect("/unauthorized");
+  //   }
   return (
     <div className="flex">
       {/* <AdminSidebar /> */}
