@@ -55,7 +55,8 @@ const StkPushSection = () => {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transactions`, {
+      const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      const res = await fetch(`${BASE_URL}/api/transactions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
