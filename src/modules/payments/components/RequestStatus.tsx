@@ -43,7 +43,7 @@ export const RequestStatus = ({ status }: RequestStatusProps) => {
   const currentIndex = steps.findIndex((step) => step.id === status);
 
   return (
-    <div className="rounded-xl border bg-card p-6 shadow-sm">
+    <div className="rounded-xl border bg-card p-6 shadow-sm my-6 md:my-0">
       <h3 className="text-lg font-semibold">Request Status</h3>
       <p className="text-sm text-muted-foreground mb-6">Track your payment request in real time.</p>
 

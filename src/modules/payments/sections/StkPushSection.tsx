@@ -56,6 +56,10 @@ const StkPushSection = () => {
 
     try {
       const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      console.log({
+        BASE_URL,
+        url: `${BASE_URL}/api/transactions`,
+      });
       const res = await fetch(`${BASE_URL}/api/transactions`, {
         method: "POST",
         headers: {
@@ -64,12 +68,11 @@ const StkPushSection = () => {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.message || "Transaction failed");
+        const text = await res.text();
+        throw new Error(text);
       }
-
+      const data = await res.json();
       const checkoutId = data.checkoutRequestId;
 
       if (!checkoutId) {
@@ -100,8 +103,15 @@ const StkPushSection = () => {
         }
       });
     } catch (error: any) {
+      console.error("Fetch error:", error);
+
+      if (error instanceof Error) {
+        setMessage(error.message);
+      } else {
+        setMessage("Unknown error");
+      }
+
       setStatus("pending");
-      setMessage(error.message || "Transaction failed");
     }
     // finally {
     //   setLoading(false);

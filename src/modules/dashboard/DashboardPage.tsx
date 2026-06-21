@@ -6,12 +6,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 import PageWrapper from "@/shared/components/shared/PageWrapper";
-import DashboardCards from "./components/DashboardCards";
 
 export default function Page() {
   return (
     <PageWrapper>
-      <DashboardCards />
+      <h1>Dashboard Page</h1>
     </PageWrapper>
   );
 }

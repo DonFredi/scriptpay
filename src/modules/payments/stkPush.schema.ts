@@ -38,4 +38,4 @@ export const stkPushSchema = z.object({
   //   reference: z.string().trim().min(3, "Reference is too short").max(30, "Reference is too long"),
 });
 
-export type StkPushInput = z.infer<typeof stkPushSchema>;
+export type StkFormData = z.infer<typeof stkPushSchema>;
