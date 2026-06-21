@@ -8,7 +8,7 @@ export const serverConfig = {
     sentryDsn: serverEnv.SENTRY_DSN,
   },
   keys: {
-    // privateKey: serverEnv.FIREBASE_PRIVATE_KEY,
+    privateKey: serverEnv.FIREBASE_PRIVATE_KEY,
     // ngokAuthToken: serverEnv.NGROK_AUTH_TOKEN,
     // encryptionSecret: serverEnv.ENCRYPTION_SECRET,
     resendApiKey: serverEnv.RESEND_API_KEY,

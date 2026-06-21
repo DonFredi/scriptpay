@@ -11,6 +11,7 @@ const envSchema = z.object({
   SENTRY_AUTH_TOKEN: z.string().min(1),
   RESEND_API_KEY: z.string().min(1),
   EMAIL_API_KEY: z.string().min(1),
+  FIREBASE_PRIVATE_KEY: z.string().min(1),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
