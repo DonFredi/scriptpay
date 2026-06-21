@@ -10,7 +10,7 @@ const TransactionsPage = () => {
     <PageWrapper>
       <SectionWrapper>
         <h1>Transactions</h1>
-        <p>View and manage your transactions.</p>
+        <p>View and manage your transactions</p>
       </SectionWrapper>
 
       <TransactionsTable transactions={transactions} loading={loading} />
