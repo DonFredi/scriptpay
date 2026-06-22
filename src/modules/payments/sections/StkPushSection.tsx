@@ -38,8 +38,8 @@ const StkPushSection = () => {
 
     const payload: any = {
       transactionType,
-      phone: Number(data.phone),
-      amount: Number(data.amount),
+      phone: data.phone,
+      amount: data.amount,
       paybillNumber: data.paybillNumber ? Number(data.paybillNumber) : undefined,
       tillNumber: data.tillNumber ? Number(data.tillNumber) : undefined,
       accountNumber: data.accountNumber,
