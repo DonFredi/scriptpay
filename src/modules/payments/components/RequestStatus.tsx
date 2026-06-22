@@ -14,28 +14,17 @@ const steps: {
   {
     id: "pending",
     title: "Transaction Pending",
-    description: "Transaction is pending",
-  },
-
-  {
-    id: "request_sent",
-    title: "Request Sent",
-    description: "STK Push sent successfully",
+    description: "Waiting for STK Push initiation",
   },
   {
-    id: "stk_received",
-    title: "STK Push Received",
-    description: "Waiting for customer to enter PIN",
+    id: "success",
+    title: "Payment Successful",
+    description: "Transaction completed successfully",
   },
   {
-    id: "payment_received",
-    title: "Payment Received",
-    description: "Customer completed payment",
-  },
-  {
-    id: "callback_received",
-    title: "Callback Received",
-    description: "Payment confirmed successfully",
+    id: "failed",
+    title: "Payment Failed",
+    description: "Transaction was not completed",
   },
 ];
 

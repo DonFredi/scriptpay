@@ -73,9 +73,9 @@ const StkPushSection = () => {
         throw new Error(text);
       }
       const data = await res.json();
-      const checkoutId = data.checkoutRequestId;
+      const checkoutRequestID = data.checkoutRequestId;
 
-      if (!checkoutId) {
+      if (!checkoutRequestID) {
         throw new Error("Missing checkoutRequestId");
       }
 
@@ -84,22 +84,25 @@ const StkPushSection = () => {
         setMessage("Still waiting...Please complete payment n your phone.");
       }, 10000);
 
-      const unsub = onSnapshot(doc(db, "transactions", checkoutId), (snap) => {
+      const unsub = onSnapshot(doc(db, "transactions", checkoutRequestID), (snap) => {
         const tx = snap.data();
+        console.log("🔥 SNAPSHOT FIRED");
+        console.log("exists:", snap.exists());
+        console.log("data:", snap.data());
         if (!tx) return;
 
         if (tx.status === "success") {
           clearTimeout(waitingTimeout);
-          setStatus("payment_received");
+          setStatus("success");
           setMessage(" Payment successful!");
           unsub();
-        }
-
-        if (tx.status === "failed") {
+        } else if (tx.status === "failed") {
           clearTimeout(waitingTimeout);
-          setStatus("pending");
+          setStatus("failed");
           setMessage(` ${tx.resultDesc || "Transaction failed"}`);
           unsub();
+        } else {
+          setStatus("pending");
         }
       });
     } catch (error: any) {
