@@ -17,6 +17,8 @@ export const useTransactions = ({ clientId, isAdmin = false }: UseTransactionsPr
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     let transactionsQuery: Query;
 
     if (isAdmin) {
@@ -47,7 +49,7 @@ export const useTransactions = ({ clientId, isAdmin = false }: UseTransactionsPr
         setLoading(false);
       },
       (err) => {
-        console.error(err);
+        console.error("Transactions listener error;", err);
         setError(err.message);
         setLoading(false);
       },

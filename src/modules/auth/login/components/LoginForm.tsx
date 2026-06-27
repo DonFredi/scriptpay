@@ -29,6 +29,12 @@ export default function LoginForm() {
   });
 
   const handleLogin = async (data: LoginInput) => {
+    console.log({
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+      authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    });
+
     console.log("Starting login");
 
     const credential = await signInWithEmailAndPassword(auth, data.email, data.password);
@@ -37,7 +43,7 @@ export default function LoginForm() {
 
     const idToken = await credential.user.getIdToken();
 
-    console.log("Got idToken");
+    console.log("Got idToken", idToken);
 
     const response = await mutateAsync({ idToken });
 
@@ -46,6 +52,7 @@ export default function LoginForm() {
     console.log("Redirecting...");
 
     router.replace("/dashboard");
+    reset();
   };
   return (
     <SectionWrapper className="flex flex-col gap-4 items-center">

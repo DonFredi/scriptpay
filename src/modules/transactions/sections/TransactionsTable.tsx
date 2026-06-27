@@ -8,6 +8,22 @@ interface TransactionsTableProps {
   loading: boolean;
 }
 
+const formatDate = (timestamp: any) => {
+  if (!timestamp?.toDate) return "-";
+  return timestamp.toDate().toLocaleString();
+};
+
+const getStatusStyle = (status: string) => {
+  switch (status) {
+    case "success":
+      return "text-green-600 font-medium";
+    case "failed":
+      return "text-red-600 font-medium";
+    default:
+      return "text-yellow-600 font-medium";
+  }
+};
+
 const TransactionsTable = ({ transactions, loading }: TransactionsTableProps) => {
   if (loading) {
     return <div>Loading Transactions...</div>;
@@ -19,7 +35,7 @@ const TransactionsTable = ({ transactions, loading }: TransactionsTableProps) =>
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-25">Invoice</TableHead>
+            <TableHead className="w-25">ID</TableHead>
             <TableHead>Phone Number</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Status</TableHead>
@@ -36,11 +52,11 @@ const TransactionsTable = ({ transactions, loading }: TransactionsTableProps) =>
           ) : (
             transactions.map((transaction) => (
               <TableRow key={transaction.id}>
-                <TableCell className="font-medium">INV001</TableCell>
+                <TableCell className="font-medium"> {transaction.id.slice(0, 10)}...</TableCell>
                 <TableCell>{transaction.phone}</TableCell>
                 <TableCell>{transaction.amount}</TableCell>
                 <TableCell>{transaction.status}</TableCell>
-                <TableCell className="text-right">{transaction.createdAt} </TableCell>
+                <TableCell className="text-right">{formatDate(transaction.createdAt)} </TableCell>
               </TableRow>
             ))
           )}

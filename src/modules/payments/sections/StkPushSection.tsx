@@ -81,7 +81,7 @@ const StkPushSection = () => {
 
       setMessage("Awaiting confirmation...");
       const waitingTimeout = setTimeout(() => {
-        setMessage("Still waiting...Please complete payment n your phone.");
+        setMessage("Still waiting...Please enter mpesa pin in your phone.");
       }, 10000);
 
       const unsub = onSnapshot(doc(db, "transactions", checkoutRequestID), (snap) => {
@@ -89,6 +89,7 @@ const StkPushSection = () => {
         console.log("🔥 SNAPSHOT FIRED");
         console.log("exists:", snap.exists());
         console.log("data:", snap.data());
+        console.log("Frontend listening:", checkoutRequestID);
         if (!tx) return;
 
         if (tx.status === "success") {

@@ -25,8 +25,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const isAuthenticated = !!user;
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Current user:", user);
+
       setUser(user);
       setLoading(false);
+      setIsInitialized(true);
     });
 
     return unsubscribe;

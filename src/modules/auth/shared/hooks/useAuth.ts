@@ -1,9 +1,9 @@
 "use client";
 import { useAuthContext } from "@/providers/AuthProvider";
-import { isInitialized } from "@sentry/nextjs";
+// import { isInitialized } from "@sentry/nextjs";
 
 export const useAuth = () => {
-  const { user, isAuthenticated, loading } = useAuthContext();
+  const { user, isAuthenticated, loading, isInitialized } = useAuthContext();
   return {
     user,
     isAuthenticated,
